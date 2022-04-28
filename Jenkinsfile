@@ -2,10 +2,13 @@ pipeline{
     agent{
         label "node-2"
     }
+    tools {
+      maven 'maven3.8.5'
+    }
     stages{
         stage("Build"){
             steps{
-                echo "Build successfully"
+                sh "mvn clean install"
             }
         }
 
