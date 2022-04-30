@@ -17,6 +17,12 @@ pipeline{
                 echo "Test the package successfully"
             }
         }
+        
+        stage('ExecuteSonarQubeReport'){
+        steps{
+                sh  "mvn clean sonar:sonar"
+            }
+        }
 
         stage("Deploy"){
             steps{
