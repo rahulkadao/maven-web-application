@@ -4,6 +4,7 @@ pipeline{
     }
     tools {
       maven 'Maven_3.8.5'
+      sonar 'Sonar-Scanner'
     }
     stages{
         stage("Build"){
@@ -20,13 +21,9 @@ pipeline{
         
         stage('ExecuteSonarQubeReport'){
             steps{
-                def scannerhome = tool 'Sonar-Scanner';
-                withSonarQubeEnv(credentialsId: 'sonarqubenewscec') {
-                    sh " ${scannerhome}/bin/sonar-runner -D sonar.login=admin -D sonar.password=admin"
-              }
-           }
+            sh  "mvn clean sonar:sonar"
+            }
         }
-
         stage("Deploy"){
             steps{
                 sshagent(['97f4ce46-445c-4190-ac01-e2d1773ab30d']) {
