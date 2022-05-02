@@ -4,7 +4,6 @@ pipeline{
     }
     tools {
       maven 'Maven_3.8.5'
-      sonar 'Sonar-Scanner'
     }
     stages{
         stage("Build"){
