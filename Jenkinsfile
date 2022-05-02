@@ -20,7 +20,7 @@ pipeline{
         
         stage('ExecuteSonarQubeReport'){
             steps{
-            sh  "mvn clean sonar:sonar"
+            sh  "mvn sonar:sonar"
             }
         }
         stage("Deploy"){
