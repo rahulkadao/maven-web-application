@@ -20,8 +20,12 @@ pipeline{
         
         stage('ExecuteSonarQubeReport'){
         steps{
-                sh  "mvn clean package sonar:sonar"
-            }
+            
+            def scannerhome = tool 'Sonar-Scanner';
+            withSonarQubeEnv(credentialsId: 'sonarqubenewscec') {
+                  sh """$(scannerhome)/bin/sonar-runner -D sonar.login = admin -D sonar.password = admin """
+              }
+           }
         }
 
         stage("Deploy"){
