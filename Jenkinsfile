@@ -19,11 +19,10 @@ pipeline{
         }
         
         stage('ExecuteSonarQubeReport'){
-        steps{
-            
-            def scannerhome = tool 'Sonar-Scanner';
-            withSonarQubeEnv(credentialsId: 'sonarqubenewscec') {
-                  sh """$(scannerhome)/bin/sonar-runner -D sonar.login = admin -D sonar.password = admin """
+            steps{
+                def scannerhome = tool 'Sonar-Scanner';
+                withSonarQubeEnv(credentialsId: 'sonarqubenewscec') {
+                   sh """ $(scannerhome)/bin/sonar-runner -D sonar.login = admin -D sonar.password = admin """
               }
            }
         }
