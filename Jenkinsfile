@@ -18,9 +18,9 @@ pipeline{
             }
         }
         
-        stage('ExecuteSonarQubeReport'){
+        stage('UploadArtifactsIntoNexus'){
             steps{
-            sh  "mvn sonar:sonar"
+                sh  "mvn clean deploy"
             }
         }
         stage("Deploy"){
